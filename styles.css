@@ -1,0 +1,123 @@
+/* Variables */
+:root {
+  /* Tile Colors */
+  --color1: #f65314;
+  --color2: #00a1f1;
+  --color3: #ffbb00;
+  --color4: #7cbb00;
+  /* Game Accent Color */
+  --accent: #306844;
+  /* Border Radius */
+  --radius: 10px;
+  /* Size of each simon says tile */
+  --square: 200px;
+  /* spacing between each element */
+  --spacing: 30px;
+}
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Body */
+body {
+  background: whitesmoke;
+}
+
+/* Game Container */
+.container {
+  width: 95%;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Heading */
+h1 {
+  margin-bottom: var(--spacing);
+  font-size: 50px;
+  color: var(--accent);
+}
+
+/* Scores */
+.scores {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc((var(--square) * 2) + 100px);
+  margin-bottom: var(--spacing);
+  background: var(--accent);
+  color: white;
+  font-size: 20px;
+  padding: 15px;
+  border-radius: var(--radius);
+}
+
+/* Gameboard */
+.gameboard {
+  display: grid;
+  grid-template-areas:
+    'one two'
+    'three four';
+  grid-gap: 10px;
+  margin-bottom: var(--spacing);
+}
+
+.gameboard div {
+  height: var(--square);
+  width: var(--square);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.gameboard :nth-child(1) {
+  grid-area: one;
+  background: var(--color1);
+}
+.gameboard :nth-child(2) {
+  grid-area: two;
+  background: var(--color2);
+}
+.gameboard :nth-child(3) {
+  grid-area: three;
+  background: var(--color3);
+}
+.gameboard :nth-child(4) {
+  grid-area: four;
+  background: var(--color4);
+}
+
+.gameboard div:hover {
+  filter: brightness(120%);
+}
+
+/* Active color, this is for when the computer shows the pattern */
+.activeColor {
+  filter: brightness(120%);
+}
+
+/* Begin Button */
+.begin {
+  height: 40px;
+  width: 150px;
+  background: var(--accent);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius);
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.begin:hover {
+  filter: brightness(110%);
+}
