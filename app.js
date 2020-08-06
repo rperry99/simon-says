@@ -11,8 +11,10 @@ const beginBtn = document.getElementById('begin');
 let answerPattern = [];
 let playerPattern = [];
 let currentPlayerNum;
-let currentRound = 1;
 let currentScore = 0;
+
+// Toggle to check if the player is in an active game
+let activeGame = false;
 
 // Check if the two arrays are equal and if the player clicked the right button
 let index = 0;
@@ -22,69 +24,81 @@ function checkIfRight() {
     console.log('Thats right, keep going!');
     index++;
     playerPattern.push(currentPlayerNum);
+    if (answerPattern.length === playerPattern.length) {
+      console.log('Round Won');
+      currentScore++;
+      updateScore();
+      newRound();
+      nextCue();
+    }
   } else {
     console.log('WRONG');
-  }
-  if (answerPattern.length === playerPattern.length) {
-    checkWin(answerPattern, playerPattern);
-  }
-}
-
-// Check to see if the player has won
-function checkWin(answerArr, playerArr) {
-  if (
-    Array.isArray(answerArr) &&
-    Array.isArray(playerArr) &&
-    answerArr.length === playerArr.length &&
-    answerArr.every((val, index) => val === playerArr[index])
-  ) {
-    console.log('You win');
-    currentRound++;
-    updateScore();
     resetGame();
-    generateAnswer(currentRound);
   }
 }
 
 // Update the score
-function updateScore() {
-  currentScore += 10;
-  currentScoreEl.innerText = currentScore;
+function updateScore(score) {
+  currentScoreEl.innerText = score;
+}
+
+// Function to clear info for new round
+function newRound() {
+  playerPattern = [];
+  index = 0;
 }
 
 // Reset the game for the next round or new game
 function resetGame() {
-  playerPattern = [];
+  activeGame = false;
+  newRound();
   answerPattern = [];
-  index = 0;
+  currentScore = 0;
+  updateScore(currentScore);
 }
 
 // Generate the answer for the round
-function generateAnswer(round) {
-  let answerCount = round + 2;
-  for (let i = 1; i <= answerCount; i++) {
-    answerPattern.push(Math.floor(Math.random() * 4) + 1);
+function generateNewGame(cues) {
+  for (let i = 1; i <= cues; i++) {
+    nextCue();
   }
+  activeGame = true;
+}
+
+// Generate the next number on successful round
+function nextCue() {
+  answerPattern.push(Math.floor(Math.random() * 4) + 1);
   console.log(answerPattern);
 }
 
 // Events Listeners
 tile1.addEventListener('click', () => {
-  currentPlayerNum = 1;
-  checkIfRight();
+  if (activeGame) {
+    currentPlayerNum = 1;
+    checkIfRight();
+  }
 });
 tile2.addEventListener('click', () => {
-  currentPlayerNum = 2;
-  checkIfRight();
+  if (activeGame) {
+    currentPlayerNum = 2;
+    checkIfRight();
+  }
 });
 tile3.addEventListener('click', () => {
-  currentPlayerNum = 3;
-  checkIfRight();
+  if (activeGame) {
+    currentPlayerNum = 3;
+    checkIfRight();
+  }
 });
 tile4.addEventListener('click', () => {
-  currentPlayerNum = 4;
-  checkIfRight();
+  if (activeGame) {
+    currentPlayerNum = 4;
+    checkIfRight();
+  }
+});
+
+beginBtn.addEventListener('click', () => {
+  generateNewGame(3);
 });
 
 // Onload
-generateAnswer(currentRound);
