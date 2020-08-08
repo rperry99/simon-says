@@ -6,6 +6,7 @@ const tile2 = document.getElementById('tile2');
 const tile3 = document.getElementById('tile3');
 const tile4 = document.getElementById('tile4');
 const beginBtn = document.getElementById('begin');
+const beep = document.getElementById('beep');
 
 // Global Variable
 let answerPattern = [];
@@ -75,34 +76,6 @@ let showTime = 1500; // In ms
 
 // Function to make the tiles light up for the code
 function showAnswer() {
-  // for (let i = 0; i < answerPattern.length; i++) {
-  //   setTimeout(() => {
-  //     if (answerPattern[i] === 1) {
-  //       tile1.classList.add('activeColor');
-  //       setTimeout(() => {
-  //         tile1.classList.remove('activeColor');
-  //       }, showTime);
-  //     } else if (answerPattern[i] === 2) {
-  //       tile2.classList.add('activeColor');
-  //       setTimeout(() => {
-  //         tile2.classList.remove('activeColor');
-  //       }, showTime);
-  //     } else if (answerPattern[i] === 3) {
-  //       tile3.classList.add('activeColor');
-  //       setTimeout(() => {
-  //         tile3.classList.remove('activeColor');
-  //       }, showTime);
-  //     } else if (answerPattern[i] === 4) {
-  //       tile4.classList.add('activeColor');
-  //       setTimeout(() => {
-  //         tile4.classList.remove('activeColor');
-  //       }, showTime);
-  //     }
-  //     setTimeout(() => {
-  //       console.log('wait');
-  //     }, showTime);
-  //   }, showTime * i);
-  // }
   answerLoop();
 }
 
@@ -138,6 +111,7 @@ function answerLoop() {
         }, showTime);
       }, showTime * i);
     }
+    // beep.play();
     i++;
     if (i < answerPattern.length) {
       answerLoop();
@@ -149,24 +123,28 @@ function answerLoop() {
 tile1.addEventListener('click', () => {
   if (activeGame) {
     currentPlayerNum = 1;
+    // beep.play();
     checkIfRight();
   }
 });
 tile2.addEventListener('click', () => {
   if (activeGame) {
     currentPlayerNum = 2;
+    // beep.play();
     checkIfRight();
   }
 });
 tile3.addEventListener('click', () => {
   if (activeGame) {
     currentPlayerNum = 3;
+    // beep.play();
     checkIfRight();
   }
 });
 tile4.addEventListener('click', () => {
   if (activeGame) {
     currentPlayerNum = 4;
+    // beep.play();
     checkIfRight();
   }
 });
