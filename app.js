@@ -71,6 +71,80 @@ function nextCue() {
   console.log(answerPattern);
 }
 
+let showTime = 1500; // In ms
+
+// Function to make the tiles light up for the code
+function showAnswer() {
+  // for (let i = 0; i < answerPattern.length; i++) {
+  //   setTimeout(() => {
+  //     if (answerPattern[i] === 1) {
+  //       tile1.classList.add('activeColor');
+  //       setTimeout(() => {
+  //         tile1.classList.remove('activeColor');
+  //       }, showTime);
+  //     } else if (answerPattern[i] === 2) {
+  //       tile2.classList.add('activeColor');
+  //       setTimeout(() => {
+  //         tile2.classList.remove('activeColor');
+  //       }, showTime);
+  //     } else if (answerPattern[i] === 3) {
+  //       tile3.classList.add('activeColor');
+  //       setTimeout(() => {
+  //         tile3.classList.remove('activeColor');
+  //       }, showTime);
+  //     } else if (answerPattern[i] === 4) {
+  //       tile4.classList.add('activeColor');
+  //       setTimeout(() => {
+  //         tile4.classList.remove('activeColor');
+  //       }, showTime);
+  //     }
+  //     setTimeout(() => {
+  //       console.log('wait');
+  //     }, showTime);
+  //   }, showTime * i);
+  // }
+  answerLoop();
+}
+
+var i = 0;
+function answerLoop() {
+  setTimeout(() => {
+    if (answerPattern[i] === 1) {
+      setTimeout(() => {
+        tile1.classList.add('activeColor');
+        setTimeout(() => {
+          tile1.classList.remove('activeColor');
+        }, showTime);
+      }, showTime * i);
+    } else if (answerPattern[i] === 2) {
+      setTimeout(() => {
+        tile2.classList.add('activeColor');
+        setTimeout(() => {
+          tile2.classList.remove('activeColor');
+        }, showTime);
+      }, showTime * i);
+    } else if (answerPattern[i] === 3) {
+      setTimeout(() => {
+        tile3.classList.add('activeColor');
+        setTimeout(() => {
+          tile3.classList.remove('activeColor');
+        }, showTime);
+      }, showTime * i);
+    } else if (answerPattern[i] === 4) {
+      setTimeout(() => {
+        tile4.classList.add('activeColor');
+        setTimeout(() => {
+          tile4.classList.remove('activeColor');
+        }, showTime);
+      }, showTime * i);
+    }
+    i++;
+    if (i < answerPattern.length) {
+      answerLoop();
+    }
+  }, showTime);
+}
+
 // Events Listeners
 tile1.addEventListener('click', () => {
   if (activeGame) {
@@ -99,6 +173,9 @@ tile4.addEventListener('click', () => {
 
 beginBtn.addEventListener('click', () => {
   generateNewGame(3);
+  beginBtn.disabled = true;
+  beginBtn.classList.add('disabled');
+  showAnswer();
 });
 
 // Onload

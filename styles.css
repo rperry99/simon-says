@@ -100,7 +100,7 @@ h1 {
 
 /* Active color, this is for when the computer shows the pattern */
 .activeColor {
-  filter: brightness(120%);
+  filter: brightness(50%);
 }
 
 /* Begin Button */
@@ -116,8 +116,20 @@ h1 {
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
+  border: none;
+  outline: none;
 }
 
 .begin:hover {
   filter: brightness(110%);
+}
+
+/* Begin Button: Disabled */
+.disabled {
+  filter: grayscale(100%);
+}
+
+.disabled:hover {
+  filter: grayscale(100%);
+  cursor: default;
 }
