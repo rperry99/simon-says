@@ -15,7 +15,6 @@ let currentPlayerNum;
 let currentScore = 0;
 
 // Toggle to check if the player is in an active game
-let activeGame = false;
 
 // Check if the two arrays are equal and if the player clicked the right button
 let index = 0;
@@ -31,6 +30,8 @@ function checkIfRight() {
       updateScore();
       newRound();
       nextCue();
+      i = 0;
+      showAnswer();
     }
   } else {
     console.log('WRONG');
@@ -51,7 +52,6 @@ function newRound() {
 
 // Reset the game for the next round or new game
 function resetGame() {
-  activeGame = false;
   newRound();
   answerPattern = [];
   currentScore = 0;
@@ -63,7 +63,7 @@ function generateNewGame(cues) {
   for (let i = 1; i <= cues; i++) {
     nextCue();
   }
-  activeGame = true;
+  showAnswer();
 }
 
 // Generate the next number on successful round
@@ -72,7 +72,7 @@ function nextCue() {
   console.log(answerPattern);
 }
 
-let showTime = 1500; // In ms
+let showTime = 1000; // In ms
 
 // Function to make the tiles light up for the code
 function showAnswer() {
@@ -121,39 +121,30 @@ function answerLoop() {
 
 // Events Listeners
 tile1.addEventListener('click', () => {
-  if (activeGame) {
-    currentPlayerNum = 1;
-    // beep.play();
-    checkIfRight();
-  }
+  currentPlayerNum = 1;
+  // beep.play();
+  checkIfRight();
 });
 tile2.addEventListener('click', () => {
-  if (activeGame) {
-    currentPlayerNum = 2;
-    // beep.play();
-    checkIfRight();
-  }
+  currentPlayerNum = 2;
+  // beep.play();
+  checkIfRight();
 });
 tile3.addEventListener('click', () => {
-  if (activeGame) {
-    currentPlayerNum = 3;
-    // beep.play();
-    checkIfRight();
-  }
+  currentPlayerNum = 3;
+  // beep.play();
+  checkIfRight();
 });
 tile4.addEventListener('click', () => {
-  if (activeGame) {
-    currentPlayerNum = 4;
-    // beep.play();
-    checkIfRight();
-  }
+  currentPlayerNum = 4;
+  // beep.play();
+  checkIfRight();
 });
 
 beginBtn.addEventListener('click', () => {
   generateNewGame(3);
   beginBtn.disabled = true;
   beginBtn.classList.add('disabled');
-  showAnswer();
 });
 
 // Onload
