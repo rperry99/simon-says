@@ -14,8 +14,6 @@ let playerPattern = [];
 let currentPlayerNum;
 let currentScore = 0;
 
-// Toggle to check if the player is in an active game
-
 // Check if the two arrays are equal and if the player clicked the right button
 let index = 0;
 
@@ -36,6 +34,9 @@ function checkIfRight() {
   } else {
     console.log('WRONG');
     resetGame();
+    beginBtn.disabled = false;
+    beginBtn.classList.remove('disabled');
+    beginBtn.innerText = 'Try Again';
   }
 }
 
