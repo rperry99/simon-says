@@ -26,8 +26,8 @@ function checkIfRight() {
     playerPattern.push(currentPlayerNum);
     if (answerPattern.length === playerPattern.length) {
       console.log('Round Won');
-      currentScore++;
-      updateScore();
+      currentScore += 10;
+      updateScore(currentScore);
       newRound();
       nextCue();
       i = 0;
