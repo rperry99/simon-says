@@ -13,6 +13,8 @@ let answerPattern = [];
 let playerPattern = [];
 let currentPlayerNum;
 let currentScore = 0;
+let highscore = 0;
+console.log(highscore);
 
 // Check if the two arrays are equal and if the player clicked the right button
 let index = 0;
@@ -30,6 +32,12 @@ function checkIfRight() {
       showAnswer();
     }
   } else {
+    // local storage if statement to set new high score if one is reached.
+    if (currentScore > highscore) {
+      highscore = currentScore;
+      highscoreEl.innerText = highscore;
+      localStorage.setItem('highscore', highscore);
+    }
     resetGame();
     beginBtn.disabled = false;
     beginBtn.classList.remove('disabled');
@@ -145,4 +153,9 @@ beginBtn.addEventListener('click', () => {
   beginBtn.classList.add('disabled');
 });
 
-// Onload
+// Onload check if there is a high score in local storage
+if (localStorage.getItem('highscore')) {
+  highscoreEl.innerText = localStorage.getItem('highscore');
+} else {
+  highscoreEl.innerText = 0;
+}
