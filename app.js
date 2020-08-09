@@ -37,6 +37,7 @@ function checkIfRight() {
     beginBtn.disabled = false;
     beginBtn.classList.remove('disabled');
     beginBtn.innerText = 'Try Again';
+    i = 0;
   }
 }
 
