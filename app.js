@@ -19,25 +19,22 @@ let index = 0;
 
 function checkIfRight() {
   if (answerPattern[index] === currentPlayerNum) {
-    console.log('Thats right, keep going!');
     index++;
     playerPattern.push(currentPlayerNum);
     if (answerPattern.length === playerPattern.length) {
-      console.log('Round Won');
       currentScore += 10;
       updateScore(currentScore);
       newRound();
       nextCue();
-      i = 0;
+      answerCounter = 0;
       showAnswer();
     }
   } else {
-    console.log('WRONG');
     resetGame();
     beginBtn.disabled = false;
     beginBtn.classList.remove('disabled');
     beginBtn.innerText = 'Try Again';
-    i = 0;
+    answerCounter = 0;
   }
 }
 
@@ -71,7 +68,6 @@ function generateNewGame(cues) {
 // Generate the next number on successful round
 function nextCue() {
   answerPattern.push(Math.floor(Math.random() * 4) + 1);
-  console.log(answerPattern);
 }
 
 let showTime = 1000; // In ms
@@ -81,41 +77,41 @@ function showAnswer() {
   answerLoop();
 }
 
-var i = 0;
+var answerCounter = 0; // This is to count the items in the array
 function answerLoop() {
   setTimeout(() => {
-    if (answerPattern[i] === 1) {
+    if (answerPattern[answerCounter] === 1) {
       setTimeout(() => {
         tile1.classList.add('activeColor');
         setTimeout(() => {
           tile1.classList.remove('activeColor');
         }, showTime);
-      }, showTime * i);
-    } else if (answerPattern[i] === 2) {
+      }, showTime * answerCounter);
+    } else if (answerPattern[answerCounter] === 2) {
       setTimeout(() => {
         tile2.classList.add('activeColor');
         setTimeout(() => {
           tile2.classList.remove('activeColor');
         }, showTime);
-      }, showTime * i);
-    } else if (answerPattern[i] === 3) {
+      }, showTime * answerCounter);
+    } else if (answerPattern[answerCounter] === 3) {
       setTimeout(() => {
         tile3.classList.add('activeColor');
         setTimeout(() => {
           tile3.classList.remove('activeColor');
         }, showTime);
-      }, showTime * i);
-    } else if (answerPattern[i] === 4) {
+      }, showTime * answerCounter);
+    } else if (answerPattern[answerCounter] === 4) {
       setTimeout(() => {
         tile4.classList.add('activeColor');
         setTimeout(() => {
           tile4.classList.remove('activeColor');
         }, showTime);
-      }, showTime * i);
+      }, showTime * answerCounter);
     }
     // beep.play();
-    i++;
-    if (i < answerPattern.length) {
+    answerCounter++;
+    if (answerCounter < answerPattern.length) {
       answerLoop();
     }
   }, showTime);
