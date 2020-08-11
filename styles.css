@@ -80,18 +80,22 @@ h1 {
 .gameboard :nth-child(1) {
   grid-area: one;
   background: var(--color1);
+  border-top-left-radius: 50%;
 }
 .gameboard :nth-child(2) {
   grid-area: two;
   background: var(--color2);
+  border-top-right-radius: 50%;
 }
 .gameboard :nth-child(3) {
   grid-area: three;
   background: var(--color3);
+  border-bottom-left-radius: 50%;
 }
 .gameboard :nth-child(4) {
   grid-area: four;
   background: var(--color4);
+  border-bottom-right-radius: 50%;
 }
 
 .gameboard div:hover {
