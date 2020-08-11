@@ -7,6 +7,7 @@ const tile3 = document.getElementById('tile3');
 const tile4 = document.getElementById('tile4');
 const beginBtn = document.getElementById('begin');
 const beep = document.getElementById('beep');
+const gameoverEl = document.getElementById('gameover');
 
 // Global Variable
 let answerPattern = [];
@@ -32,6 +33,7 @@ function checkIfRight() {
       showAnswer();
     }
   } else {
+    gameover();
     // local storage if statement to set new high score if one is reached.
     if (currentScore > highscore) {
       highscore = currentScore;
@@ -123,6 +125,16 @@ function answerLoop() {
       answerLoop();
     }
   }, showTime);
+}
+
+// Display Gameover
+function gameover() {
+  gameoverEl.style.display = 'flex';
+  gameoverEl.classList.add('gameover-anim');
+  setTimeout(() => {
+    gameoverEl.style.display = 'none';
+    gameoverEl.classList.remove('gameover-anim');
+  }, 3000);
 }
 
 // Events Listeners
