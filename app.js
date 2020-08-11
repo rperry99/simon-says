@@ -78,7 +78,7 @@ function nextCue() {
   answerPattern.push(Math.floor(Math.random() * 4) + 1);
 }
 
-let showTime = 1000; // In ms
+let showTime = 800; // In ms
 
 // Function to make the tiles light up for the code
 function showAnswer() {
