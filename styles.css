@@ -95,7 +95,11 @@ h1 {
 }
 
 .gameboard div:hover {
-  filter: brightness(120%);
+  filter: brightness(75%);
+}
+
+.gameboard div:active {
+  filter: brightness(50%);
 }
 
 /* Active color, this is for when the computer shows the pattern */
